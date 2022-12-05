@@ -6,14 +6,13 @@ const lists = (() => {
     return _id++;
   }
 
-  let _allGroupId = uniqueId();
 
 
+  const _defaultGroupId = uniqueId();
   const _groups = {};
 
-
-  const getGroupAll = () => {
-    return _groups[ _allGroupId ];
+  const getDefaultGroup = () => {
+    return _groups[ _defaultGroupId ];
   }
 
   const getGroupWithId = (id) => {
@@ -33,8 +32,13 @@ const lists = (() => {
 
 
     const addItem = ( i ) => {
+      //if adding to other group than Default
+      if( _id != _defaultGroupId ) {
+        getDefaultGroup().removeItem( i );
+      }
+
       //adding to the group
-      if( !_items.includes( i )) _items.push( i );
+      if( !_items.includes( i ) ) _items.push( i );
       return this;
     }
 
@@ -74,7 +78,7 @@ const lists = (() => {
 
 
   // creating first group 'all'
-  !_groups[ _allGroupId ] ? _groups[ _allGroupId ] = groupFactory( {name: 'All'} ) : 1;
+  _groups[ _defaultGroupId ] = groupFactory( {} );
 
 
 
@@ -87,14 +91,19 @@ const lists = (() => {
     const _id = uniqueId();
     const _data = data;
 
-    //each item is added to the group ALL
-    _groups[ _allGroupId ].addItem( this );
-
-    return {
+    const result = {
+      get id() {
+        return _id;
+      },
       get data() {
         return _data;
       }
     }
+    //each item is added to the group ALL
+    getDefaultGroup().addItem( result );
+    
+
+    return result;
   }
 
 
@@ -102,7 +111,7 @@ const lists = (() => {
     get all() {
       return _groups;
     },
-    getGroupAll,
+    getDefaultGroup,
     getGroupWithId,
     itemFactory, 
     groupFactory

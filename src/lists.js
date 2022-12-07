@@ -120,6 +120,6 @@ const lists = (() => {
 })();
 
 
-//window.lists = lists;
+window.lists = lists;
 
 module.exports = lists;

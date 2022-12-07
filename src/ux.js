@@ -11,19 +11,20 @@ const ux = (() => {
     uniqueId();
 
     const tpl = 
-      ` <h2 class="accordion-header" id="panelsStayOpen-heading-${_id}">
-          <button class="accordion-button" type="button" data-bs-toggle="collapse" data-bs-target="#panelsStayOpen-collapse-${_id}" aria-expanded="true" aria-controls="panelsStayOpen-collapseOne">
+      ` <h2 className="accordion-header" id="panelsStayOpen-heading-${_id}">
+          <button className="accordion-button" type="button" data-bs-toggle="collapse" data-bs-target="#panelsStayOpen-collapse-${_id}" aria-expanded="true" aria-controls="panelsStayOpen-collapseOne">
             ${name}
           </button>
         </h2>
-        <div id="panelsStayOpen-collapse-${_id}" class="accordion-collapse collapse show" aria-labelledby="panelsStayOpen-headingOne">
-          <div class="accordion-body">
+        <div id="panelsStayOpen-collapse-${_id}" className="accordion-collapse collapse show" aria-labelledby="panelsStayOpen-headingOne">
+          <div className="accordion-body">
             Project tasks will appear here;
           </div>
         </div>`;
 
     const newElem = document.createElement('div');
     newElem.className = 'accordion-item';
+    //ReactDOM.render( tpl, newElem );
     newElem.innerHTML = tpl;
     
     accordionPanel.appendChild( newElem );

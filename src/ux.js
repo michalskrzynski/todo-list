@@ -5,19 +5,22 @@ const ux = (() => {
     return ++_id;
   }
 
-  const accordionPanel = document.getElementById('allProjectsAccordion');  
+  let accordionPanel = null; 
 
   const addProject = (name) => {
+    if( !accordionPanel ) accordionPanel = document.getElementById('allProjectsAccordion');  
+
     uniqueId();
+    
 
     const tpl = 
-      ` <h2 className="accordion-header" id="panelsStayOpen-heading-${_id}">
-          <button className="accordion-button" type="button" data-bs-toggle="collapse" data-bs-target="#panelsStayOpen-collapse-${_id}" aria-expanded="true" aria-controls="panelsStayOpen-collapseOne">
+      ` <h2 class="accordion-header" id="panelsStayOpen-heading-${_id}">
+          <button class="accordion-button" type="button" data-bs-toggle="collapse" data-bs-target="#panelsStayOpen-collapse-${_id}" aria-expanded="true" aria-controls="panelsStayOpen-collapseOne">
             ${name}
           </button>
         </h2>
-        <div id="panelsStayOpen-collapse-${_id}" className="accordion-collapse collapse show" aria-labelledby="panelsStayOpen-headingOne">
-          <div className="accordion-body">
+        <div id="panelsStayOpen-collapse-${_id}" class="accordion-collapse collapse show" aria-labelledby="panelsStayOpen-headingOne">
+          <div class="accordion-body">
             Project tasks will appear here;
           </div>
         </div>`;
@@ -27,6 +30,7 @@ const ux = (() => {
     //ReactDOM.render( tpl, newElem );
     newElem.innerHTML = tpl;
     
+    console.log( accordionPanel );
     accordionPanel.appendChild( newElem );
   }
 
@@ -113,4 +117,4 @@ const ux = (() => {
 
 })();
 
-window.ux = ux;
+export default ux;

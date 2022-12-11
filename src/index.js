@@ -1,30 +1,21 @@
 //import './lists.js';
 import React from 'react';
 import ReactDOM from 'react-dom/client';
-import NavBar from './component/NavBar';
-import MainContent from './component/MainContent';
-import ux from './ux.js';
+import App from './component/App';
+import Project from './component/Project';
 
 import 'bootstrap';
 import './style.css';
 
-function Page() {
-  return (
-    <div>
-      <NavBar />
-      <MainContent />
-    </div>
-  );
-}
 
+const appElement = document.getElementById('app');
+ReactDOM.createRoot( appElement ).render( <App /> );
 
-ReactDOM.createRoot( document.getElementById('page') ).render( <Page /> );
+// setTimeout( () => {
+//   const accordionPanel = document.getElementById( 'allProjectsAccordion' );
+//   ReactDOM.createRoot( accordionPanel ).render( <Project id="1" name="Unassigned Tasks" /> );  
+// }, 0);
 
-setTimeout( () => {
-  ux.addProject('Unassigned tasks');
-  ux.placeNewTaskForm();
-  ux.addProject('Second Project');
-}, 0);
 
 
 // document.getElementById('formSave').addEventListener('click', () => {

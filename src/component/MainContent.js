@@ -1,6 +1,16 @@
 import React from 'react';
+import Project from './Project';
 
-export default function MainContent() {
+export default function MainContent( {data} ) {
+  const projects = data.map( p => {
+    return (
+      <Project 
+        key={p.id}
+        project={p}
+        />
+    )
+  })
+
   return (
     <main role="main" className="container">
 
@@ -11,7 +21,8 @@ export default function MainContent() {
           <div className="ms-1"><button className="btn btn-primary">Add Project</button></div>
         </div>
       </div>
-      <div className="accordion" id="allProjectsAccordion">
+      <div id="allProjectsAccordion">
+        {projects}
       </div>
 
     </main>

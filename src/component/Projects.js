@@ -1,13 +1,10 @@
 import React from 'react';
 import Project from './Project';
 
-export default function MainContent( {data} ) {
+export default function Projects( {data} ) {
   const projects = data.map( p => {
     return (
-      <Project 
-        key={p.id}
-        project={p}
-        />
+      <Project key={p.id} project={p} />
     )
   })
 

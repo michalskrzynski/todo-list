@@ -16,8 +16,6 @@ export default function NewTaskModal(props) {
   const handleChange = (e) => {
     const { name, value } = e.target;
 
-    console.log(name, value);
-
     setFormData( prevData => ({
       ...prevData,
       [name]: value,
